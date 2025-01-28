@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  python-server:
+  backend:
     build: ./server
     ports:
       - "8000:8000"
@@ -39,7 +39,7 @@ services:
     volumes:
       - ./dist:/usr/share/nginx/html
     depends_on:
-      - python-server
+      - backend
     networks:
       - task-network
 
@@ -52,7 +52,7 @@ services:
       - ./dist:/usr/share/nginx/html
     depends_on:
       - frontend
-      - python-server
+      - backend
     networks:
       - task-network
 
